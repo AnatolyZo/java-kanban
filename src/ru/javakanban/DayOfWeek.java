@@ -1,3 +1,5 @@
+package ru.javakanban;
+
 public enum DayOfWeek {
     MONDAY("Понедельник"),
     TUESDAY("Вторник"),

@@ -1,3 +1,5 @@
+package ru.javakanban;
+
 import java.util.*;
 
 public class Timetable {

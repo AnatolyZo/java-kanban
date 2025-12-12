@@ -1,3 +1,5 @@
+package ru.javakanban;
+
 public class TrainingSession {
 
     //группа

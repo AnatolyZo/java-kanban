@@ -1,3 +1,5 @@
+package ru.javakanban;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -82,7 +84,7 @@ public class Main {
 
         if (!requestedTrainingForDay.isEmpty()) {
             System.out.printf("%s, следующие занятия:%n", day.getRussianName());
-            for (ArrayList<TrainingSession> trainingSession : requestedTrainingForDay.values()){
+            for (ArrayList<TrainingSession> trainingSession : requestedTrainingForDay.values()) {
                 for (TrainingSession training : trainingSession) {
                     System.out.println(training.toString());
                 }

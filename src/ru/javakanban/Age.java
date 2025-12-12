@@ -1,3 +1,5 @@
+package ru.javakanban;
+
 public enum Age {
     CHILD("Для детей"),
     ADULT("Для взрослых");

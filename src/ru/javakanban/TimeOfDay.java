@@ -1,3 +1,5 @@
+package ru.javakanban;
+
 import java.util.Objects;
 
 public class TimeOfDay implements Comparable<TimeOfDay> {
