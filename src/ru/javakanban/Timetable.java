@@ -4,23 +4,21 @@ import java.util.*;
 
 public class Timetable {
 
-    private Map<DayOfWeek, LinkedHashMap<TimeOfDay, ArrayList<TrainingSession>>> timetable = new HashMap<>();
-
-    private Map<TimeOfDay, ArrayList<TrainingSession>> mapForSorting = new TreeMap<>();
+    private Map<DayOfWeek, TreeMap<TimeOfDay, ArrayList<TrainingSession>>> timetable = new HashMap<>();
 
     public Timetable() {
-        timetable.put(DayOfWeek.MONDAY, new LinkedHashMap<>());
-        timetable.put(DayOfWeek.TUESDAY, new LinkedHashMap<>());
-        timetable.put(DayOfWeek.WEDNESDAY, new LinkedHashMap<>());
-        timetable.put(DayOfWeek.THURSDAY, new LinkedHashMap<>());
-        timetable.put(DayOfWeek.FRIDAY, new LinkedHashMap<>());
-        timetable.put(DayOfWeek.SATURDAY, new LinkedHashMap<>());
-        timetable.put(DayOfWeek.SUNDAY, new LinkedHashMap<>());
+        timetable.put(DayOfWeek.MONDAY, new TreeMap<>());
+        timetable.put(DayOfWeek.TUESDAY, new TreeMap<>());
+        timetable.put(DayOfWeek.WEDNESDAY, new TreeMap<>());
+        timetable.put(DayOfWeek.THURSDAY, new TreeMap<>());
+        timetable.put(DayOfWeek.FRIDAY, new TreeMap<>());
+        timetable.put(DayOfWeek.SATURDAY, new TreeMap<>());
+        timetable.put(DayOfWeek.SUNDAY, new TreeMap<>());
     }
 
 
     public void addNewTrainingSession(TrainingSession trainingSession) {
-        LinkedHashMap<TimeOfDay, ArrayList<TrainingSession>> dayTrainings
+        TreeMap<TimeOfDay, ArrayList<TrainingSession>> dayTrainings
                 = timetable.get(trainingSession.getDayOfWeek());
         /*При добавлении новой тренировки сразу увеличиваем их количество у соответствующего тренера
           для упрощения вывода списка проведенных занятий по каждому тренеру*/
@@ -32,13 +30,6 @@ public class Timetable {
             ArrayList<TrainingSession> newTraining = new ArrayList<>();
             newTraining.add(trainingSession);
             dayTrainings.put(trainingSession.getTimeOfDay(), newTraining);
-            /*С помощью TreeMap сортируем хэш-таблицу времен тренировок и самих занятий,
-              затем возвращаем все в LinkedHashMap для сохранения отсортированного порядка, а также
-              для более быстрой работы метода getTrainingSessionsForDay*/
-            mapForSorting.putAll(dayTrainings);
-            dayTrainings.clear();
-            dayTrainings.putAll(mapForSorting);
-            mapForSorting.clear();
         } else {
             /*Для случая, если на данный день в указанное время уже есть запланированые занятий,
               то добавляем лишь занятие*/
@@ -46,7 +37,7 @@ public class Timetable {
         }
     }
 
-    public LinkedHashMap<TimeOfDay, ArrayList<TrainingSession>> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
+    public TreeMap<TimeOfDay, ArrayList<TrainingSession>> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
         return timetable.get(dayOfWeek);
     }
 

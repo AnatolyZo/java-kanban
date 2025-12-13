@@ -36,6 +36,10 @@ public class Coach implements Comparable<Coach> {
         return middleName;
     }
 
+    public int getNumberOfTrainings() {
+        return numberOfTrainings;
+    }
+
     @Override
     public String toString() {
         return "тренер - " +
@@ -66,7 +70,4 @@ public class Coach implements Comparable<Coach> {
         return o.numberOfTrainings - this.numberOfTrainings;
     }
 
-    public int getNumberOfTrainings() {
-        return numberOfTrainings;
-    }
 }

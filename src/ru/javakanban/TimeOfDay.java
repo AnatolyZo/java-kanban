@@ -9,18 +9,6 @@ public class TimeOfDay implements Comparable<TimeOfDay> {
     //минуты (от 0 до 59)
     private int minutes;
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        TimeOfDay timeOfDay = (TimeOfDay) o;
-        return hours == timeOfDay.hours && minutes == timeOfDay.minutes;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(hours, minutes);
-    }
-
     public TimeOfDay(int hours, int minutes) {
         this.hours = hours;
         this.minutes = minutes;
@@ -52,5 +40,17 @@ public class TimeOfDay implements Comparable<TimeOfDay> {
         } else {
             return this.minutes - o.minutes;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TimeOfDay timeOfDay = (TimeOfDay) o;
+        return hours == timeOfDay.hours && minutes == timeOfDay.minutes;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hours, minutes);
     }
 }

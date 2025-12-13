@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import ru.javakanban.*;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class TimetableTest {
     @AfterEach
@@ -133,7 +133,7 @@ public class TimetableTest {
         int countOfEmptyFields = 0;
 
         for (int i = 0; i < DayOfWeek.values().length; i++) {
-            LinkedHashMap<TimeOfDay, ArrayList<TrainingSession>> dayTrainings =
+            TreeMap<TimeOfDay, ArrayList<TrainingSession>> dayTrainings =
                     timetable.getTrainingSessionsForDay(DayOfWeek.values()[i]);
             if (dayTrainings.isEmpty()) {
                 countOfEmptyFields++;
@@ -186,7 +186,7 @@ public class TimetableTest {
         int countOfEmptyFields = 0;
 
         for (int i = 0; i < DayOfWeek.values().length; i++) {
-            LinkedHashMap<TimeOfDay, ArrayList<TrainingSession>> dayTrainings =
+            TreeMap<TimeOfDay, ArrayList<TrainingSession>> dayTrainings =
                     timetable.getTrainingSessionsForDay(DayOfWeek.values()[i]);
             if (dayTrainings.isEmpty()) {
                 countOfEmptyFields++;

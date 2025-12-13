@@ -1,8 +1,8 @@
 package ru.javakanban;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Main {
 
@@ -79,7 +79,7 @@ public class Main {
     private static void showTrainingsForDay() {
         System.out.println("Выберите день недели, за который хотите получить расписание занятий (1-7)");
         DayOfWeek day = inputDay();
-        LinkedHashMap<TimeOfDay, ArrayList<TrainingSession>> requestedTrainingForDay
+        TreeMap<TimeOfDay, ArrayList<TrainingSession>> requestedTrainingForDay
                 = timetable.getTrainingSessionsForDay(day);
 
         if (!requestedTrainingForDay.isEmpty()) {
@@ -129,10 +129,12 @@ public class Main {
         TimeOfDay time = inputTime();
 
         //Исключение ситуации, когда один и тот же тренер ведет 2 занятия одновременно
-        for (TrainingSession training : timetable.getTrainingSessionsForDayAndTime(day, time)) {
-            if (training.getCoach().equals(coach)) {
-                System.out.printf("Тренер %s уже ведет занятие в это время, добавление невозможно%n", coach);
-                return;
+        if (timetable.getTrainingSessionsForDayAndTime(day, time) != null) {
+            for (TrainingSession training : timetable.getTrainingSessionsForDayAndTime(day, time)) {
+                if (training.getCoach().equals(coach)) {
+                    System.out.printf("Тренер %s уже ведет занятие в это время, добавление невозможно%n", coach);
+                    return;
+                }
             }
         }
 
